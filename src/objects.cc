@@ -61,6 +61,7 @@
 #include "src/utils.h"
 #include "src/wasm/wasm-module.h"
 #include "src/zone.h"
+#include "src/heap/heap.h"
 
 #ifdef ENABLE_DISASSEMBLER
 #include "src/disasm.h"
@@ -2586,6 +2587,11 @@ void JSObject::PrintInstanceMigration(FILE* file,
     }
   }
   PrintF(file, "\n");
+}
+
+uint32_t HeapObject::GetHashSeed() const
+{
+    return GetHeap()->HashSeed();
 }
 
 

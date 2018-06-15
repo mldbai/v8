@@ -40,6 +40,7 @@
 #include "unicode/unistr.h"
 #include "unicode/unum.h"
 #include "unicode/uversion.h"
+#include "unicode/ustring.h"
 
 
 namespace v8 {

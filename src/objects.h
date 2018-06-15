@@ -1586,6 +1586,8 @@ class HeapObject: public Object {
   // The Heap the object was allocated in. Used also to access Isolate.
   inline Heap* GetHeap() const;
 
+  uint32_t GetHashSeed() const;
+  
   // Convenience method to get current isolate.
   inline Isolate* GetIsolate() const;
 
@@ -3341,7 +3343,7 @@ class HashTable : public HashTableBase {
   // Wrapper methods
   inline uint32_t Hash(Key key) {
     if (Shape::UsesSeed) {
-      return Shape::SeededHash(key, GetHeap()->HashSeed());
+      return Shape::SeededHash(key, GetHashSeed());
     } else {
       return Shape::Hash(key);
     }
@@ -3349,7 +3351,7 @@ class HashTable : public HashTableBase {
 
   inline uint32_t HashForObject(Key key, Object* object) {
     if (Shape::UsesSeed) {
-      return Shape::SeededHashForObject(key, GetHeap()->HashSeed(), object);
+      return Shape::SeededHashForObject(key, GetHashSeed(), object);
     } else {
       return Shape::HashForObject(key, object);
     }
